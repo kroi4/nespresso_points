@@ -13,11 +13,39 @@
 - 🔄 ריענון אוטומטי (אופציונלי)
 - 💾 שמירת העדפות בין ביקורים
 
+## התקנה והרצה
+
+### אפשרות 1: פתיחה ישירה
+פשוט פתח את הקובץ `index.html` בדפדפן (לחיצה כפולה על הקובץ).
+
+### אפשרות 2: שרת מקומי (מומלץ)
+
+**Python:**
+```bash
+cd nespresso_points
+python -m http.server 8080
+```
+פתח בדפדפן: http://localhost:8080
+
+**Node.js:**
+```bash
+npx serve
+```
+
+**VS Code:**
+התקן את התוסף "Live Server" ולחץ "Go Live"
+
+### אפשרות 3: GitHub Pages
+1. העלה ל-GitHub
+2. Settings → Pages → Source: main branch
+3. האתר יהיה זמין ב: `https://[username].github.io/nespresso_points`
+
 ## שימוש
 
-1. פתח את `index.html` בדפדפן
-2. הזן את מספר הנקודות שלך
+1. פתח את האתר
+2. הזן את מספר הנקודות שלך (אופציונלי)
 3. השתמש בסינונים למציאת מתנות רלוונטיות
+4. לחץ על מוצר לצפייה בפרטים נוספים
 
 ## הערות
 
@@ -31,6 +59,16 @@
 - CSS3 (Embedded)
 - JavaScript (Vanilla)
 - Nespresso Points API
+
+## מבנה הפרויקט
+
+```
+nespresso_points/
+├── index.html    # קובץ ראשי + CSS
+├── app.js        # לוגיקה
+├── data.json     # נתונים מקומיים (גיבוי)
+└── README.md
+```
 
 ---
 

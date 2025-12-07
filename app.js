@@ -971,21 +971,35 @@ function saveFilters() {
     localStorage.setItem('nespressoFilters', JSON.stringify(filters));
 }
 
+// Default filter values
+const DEFAULT_FILTERS = {
+    search: '',
+    category: 'all',
+    brand: 'all',
+    stock: 'available',      // Default: show only available
+    sort: 'points-desc',     // Default: high to low
+    minPoints: '',
+    maxPoints: '',
+    userPoints: '0',
+    affordableActive: false
+};
+
 // Load filters from localStorage
 function loadFilters() {
     const saved = JSON.parse(localStorage.getItem('nespressoFilters') || '{}');
     
-    if (elements.searchFilter && saved.search) elements.searchFilter.value = saved.search;
-    if (elements.categoryFilter && saved.category) elements.categoryFilter.value = saved.category;
-    if (elements.brandFilter && saved.brand) elements.brandFilter.value = saved.brand;
-    if (elements.stockFilter && saved.stock) elements.stockFilter.value = saved.stock;
-    if (elements.sortFilter && saved.sort) elements.sortFilter.value = saved.sort;
-    if (elements.minPoints && saved.minPoints) elements.minPoints.value = saved.minPoints;
-    if (elements.maxPoints && saved.maxPoints) elements.maxPoints.value = saved.maxPoints;
-    if (elements.userPoints && saved.userPoints) elements.userPoints.value = saved.userPoints;
+    // Use saved values or defaults
+    if (elements.searchFilter) elements.searchFilter.value = saved.search ?? DEFAULT_FILTERS.search;
+    if (elements.categoryFilter) elements.categoryFilter.value = saved.category ?? DEFAULT_FILTERS.category;
+    if (elements.brandFilter) elements.brandFilter.value = saved.brand ?? DEFAULT_FILTERS.brand;
+    if (elements.stockFilter) elements.stockFilter.value = saved.stock ?? DEFAULT_FILTERS.stock;
+    if (elements.sortFilter) elements.sortFilter.value = saved.sort ?? DEFAULT_FILTERS.sort;
+    if (elements.minPoints) elements.minPoints.value = saved.minPoints ?? DEFAULT_FILTERS.minPoints;
+    if (elements.maxPoints) elements.maxPoints.value = saved.maxPoints ?? DEFAULT_FILTERS.maxPoints;
+    if (elements.userPoints) elements.userPoints.value = saved.userPoints ?? DEFAULT_FILTERS.userPoints;
     
-    if (saved.affordableActive) {
-        affordableFilterActive = true;
+    affordableFilterActive = saved.affordableActive ?? DEFAULT_FILTERS.affordableActive;
+    if (affordableFilterActive) {
         const btn = elements.affordableBtn;
         if (btn) {
             btn.style.background = '#4caf50';
