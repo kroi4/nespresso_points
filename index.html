@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קטלוג מתנות נספרסו</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23c9a227'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='%23000'>☕</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --image-scale: 1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: #111;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* HEADER - קומפקטי */
+        .header {
+            background: #000;
+            border-bottom: 1px solid #222;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #c9a227, #8b6914);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .logo-text span {
+            color: #c9a227;
+        }
+
+        .points-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: 1px solid #333;
+        }
+
+        .points-input label {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .points-input input {
+            width: 80px;
+            background: transparent;
+            border: none;
+            color: #c9a227;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .points-input input:focus {
+            outline: none;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* FILTERS BAR - שורה אחת */
+        .filters-bar {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-item label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .filter-item select,
+        .filter-item input[type="number"] {
+            background: #222;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 13px;
+            min-width: 100px;
+        }
+
+        .filter-item select:focus,
+        .filter-item input:focus {
+            outline: none;
+            border-color: #c9a227;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .filter-checkbox input {
+            width: 16px;
+            height: 16px;
+            accent-color: #c9a227;
+        }
+
+        .filter-reset {
+            margin-right: auto;
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .filter-reset:hover {
+            border-color: #c9a227;
+            color: #c9a227;
+        }
+
+        /* STATS ROW */
+        .stats-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #222;
+        }
+
+        .stat-num {
+            font-size: 24px;
+            font-weight: 700;
+            color: #c9a227;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* PRODUCTS GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* PRODUCT CARD */
+        .product-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .product-card.out-of-stock {
+            opacity: 0.5;
+        }
+
+        .product-card.affordable {
+            border-color: #4caf50;
+        }
+
+        .product-card.affordable::before {
+            content: '✓ ניתן לממש';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #4caf50;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .product-card.out-of-stock::before {
+            content: 'אזל מהמלאי';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #666;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(180deg, #252525, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: calc(100% * var(--image-scale));
+            height: calc(100% * var(--image-scale));
+            max-width: 150%;
+            max-height: 150%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-brand {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #888;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-category {
+            font-size: 10px;
+            color: #c9a227;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            height: 42px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .product-points {
+            font-size: 20px;
+            font-weight: 700;
+            color: #c9a227;
+        }
+
+        .product-points span {
+            font-size: 12px;
+            font-weight: 400;
+            color: #666;
+            margin-right: 4px;
+        }
+
+        .product-stock {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .product-stock.in-stock {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+        }
+
+        .product-stock.out-of-stock {
+            background: rgba(150, 150, 150, 0.15);
+            color: #888;
+        }
+
+        /* LOADING */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            border-top-color: #c9a227;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        #refreshIcon {
+            display: inline-block;
+        }
+
+        /* ERROR */
+        .error-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .error-state h3 {
+            color: #e53935;
+            margin-bottom: 8px;
+        }
+
+        .error-state p {
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .error-state button {
+            background: #c9a227;
+            color: #000;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        /* NO RESULTS */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: #c9a227;
+            color: #000;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-image {
+            background: #222;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .modal-details {
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .modal-category {
+            font-size: 11px;
+            color: #c9a227;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .modal-points {
+            font-size: 32px;
+            font-weight: 700;
+            color: #c9a227;
+            margin-bottom: 16px;
+        }
+
+        .modal-points small {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .modal-status {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .modal-status.in-stock {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+        }
+
+        .modal-status.out-of-stock {
+            background: rgba(150, 150, 150, 0.15);
+            color: #888;
+        }
+
+        .modal-desc {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid #333;
+        }
+
+        .modal-meta-item {
+            font-size: 13px;
+        }
+
+        .modal-meta-item strong {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .modal-link {
+            display: block;
+            background: #c9a227;
+            color: #000;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+
+        .modal-link:hover {
+            background: #d4b23a;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #444;
+            font-size: 12px;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-image {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .filters-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-item {
+                width: 100%;
+            }
+
+            .filter-item select {
+                flex: 1;
+            }
+
+            .filter-reset {
+                margin-right: 0;
+                width: 100%;
+            }
+
+            .stats-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-name {
+                font-size: 13px;
+                height: auto;
+            }
+
+            .product-points {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .product-info {
+                padding: 10px;
+            }
+
+            .product-name {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">☕</div>
+                <div class="logo-text"><span>NESPRESSO</span> מתנות</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <button onclick="openSettings()" style="background:#222;border:1px solid #444;color:#888;padding:8px 12px;border-radius:20px;cursor:pointer;font-family:inherit;font-size:13px;transition:all 0.2s;" onmouseover="this.style.borderColor='#c9a227';this.style.color='#c9a227'" onmouseout="this.style.borderColor='#444';this.style.color='#888'">
+                    ⚙️ הגדרות
+                </button>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <button onclick="refreshData()" style="background:#222;border:1px solid #444;color:#c9a227;padding:8px 16px;border-radius:20px;cursor:pointer;font-family:inherit;font-size:13px;display:flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.borderColor='#c9a227'" onmouseout="this.style.borderColor='#444'">
+                        <span id="refreshIcon">🔄</span> רענן
+                    </button>
+                    <span id="lastUpdate" style="font-size:11px;color:#666;"></span>
+                </div>
+                <div class="points-input">
+                    <label>הנקודות שלי:</label>
+                    <input type="number" id="userPoints" value="0" min="0" step="50">
+                    <span style="color:#c9a227">★</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="filters-bar">
+            <div class="filter-item" style="flex:1;min-width:200px;">
+                <label>חיפוש</label>
+                <input type="text" id="searchFilter" placeholder="🔍 חפש מוצר..." style="width:100%;padding:8px 12px;background:#222;border:1px solid #333;color:#fff;border-radius:6px;font-family:inherit;">
+            </div>
+            <div class="filter-item">
+                <label>קטגוריה</label>
+                <select id="categoryFilter">
+                    <option value="all">הכל</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>מותג</label>
+                <select id="brandFilter">
+                    <option value="all">הכל</option>
+                    <option value="original">Original</option>
+                    <option value="vertuo">Vertuo</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>זמינות</label>
+                <select id="stockFilter">
+                    <option value="all">הכל</option>
+                    <option value="available">זמין למימוש</option>
+                    <option value="unavailable">לא זמין</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>מיון</label>
+                <select id="sortFilter">
+                    <option value="default">ברירת מחדל</option>
+                    <option value="points-asc">נקודות: נמוך → גבוה</option>
+                    <option value="points-desc">נקודות: גבוה → נמוך</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>טווח נקודות</label>
+                <input type="number" id="minPoints" placeholder="מ-" style="width:70px">
+                <span style="color:#444">–</span>
+                <input type="number" id="maxPoints" placeholder="עד" style="width:70px">
+            </div>
+            <button id="affordableBtn" onclick="toggleAffordableFilter()" style="background:#222;border:1px solid #444;color:#4caf50;padding:8px 14px;border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;transition:all 0.2s;">
+                💰 רק מה שאפשר לממש
+            </button>
+            <button class="filter-reset" onclick="resetFilters()">נקה סינון</button>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <span class="stat-num" id="totalProducts">0</span>
+                <span class="stat-label">סה״כ מתנות</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num" id="inStockProducts">0</span>
+                <span class="stat-label">במלאי</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num" id="affordableProducts">0</span>
+                <span class="stat-label">בהישג יד</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num" id="displayedProducts">0</span>
+                <span class="stat-label">מוצגות</span>
+            </div>
+        </div>
+
+        <div class="loading" id="loadingState">
+            <div class="loading-spinner"></div>
+            <p>טוען מתנות...</p>
+        </div>
+
+        <div class="error-state" id="errorState" style="display:none">
+            <h3>שגיאה בטעינה</h3>
+            <p id="errorMessage">לא ניתן לטעון את הנתונים</p>
+            <button onclick="loadData()">נסה שוב</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid" style="display:none"></div>
+    </main>
+
+    <footer class="footer">
+        קטלוג Nespresso & You ישראל • לא רשמי • לצפייה בלבד
+    </footer>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsOverlay" onclick="closeSettings()">
+        <div class="modal-content" style="max-width:500px;" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeSettings()">×</button>
+            <div style="padding:24px;">
+                <h2 style="margin-bottom:24px;font-size:20px;">⚙️ הגדרות תצוגה</h2>
+                
+                <div style="margin-bottom:24px;">
+                    <label style="display:block;margin-bottom:8px;font-size:14px;color:#aaa;">גודל תמונות</label>
+                    <input type="range" id="imageSize" min="50" max="150" value="100" style="width:100%;accent-color:#c9a227;">
+                    <div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-top:4px;">
+                        <span>קטן</span>
+                        <span id="imageSizeValue">100%</span>
+                        <span>גדול</span>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom:24px;">
+                    <label style="display:block;margin-bottom:8px;font-size:14px;color:#aaa;">גודל כרטיסים</label>
+                    <input type="range" id="cardSize" min="200" max="450" value="320" step="10" style="width:100%;accent-color:#c9a227;">
+                    <div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-top:4px;">
+                        <span>קטן</span>
+                        <span id="cardSizeValue">320px</span>
+                        <span>גדול</span>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom:24px;padding:16px;background:#222;border-radius:8px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                        <label style="font-size:14px;color:#aaa;">ריענון אוטומטי</label>
+                        <label style="position:relative;display:inline-block;width:50px;height:26px;flex-shrink:0;">
+                            <input type="checkbox" id="autoRefresh" style="opacity:0;width:0;height:0;position:absolute;">
+                            <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#444;transition:.3s;border-radius:26px;"></span>
+                            <span id="autoRefreshToggle" style="position:absolute;height:20px;width:20px;left:3px;bottom:3px;background-color:white;transition:.3s;border-radius:50%;pointer-events:none;"></span>
+                        </label>
+                    </div>
+                    <div id="autoRefreshOptions" style="display:none;">
+                        <label style="display:block;margin-bottom:8px;font-size:13px;color:#888;">מרווח ריענון</label>
+                        <select id="refreshInterval" style="width:100%;padding:10px;background:#333;border:1px solid #444;color:#fff;border-radius:6px;font-family:inherit;">
+                            <option value="60000">דקה</option>
+                            <option value="300000">5 דקות</option>
+                            <option value="600000">10 דקות</option>
+                            <option value="1800000">30 דקות</option>
+                            <option value="3600000">שעה</option>
+                            <option value="7200000">שעתיים</option>
+                            <option value="10800000">3 שעות</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button onclick="closeSettings()" style="width:100%;padding:12px;background:#c9a227;color:#000;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;">
+                    שמור וסגור
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
